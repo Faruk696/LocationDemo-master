@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +31,7 @@ import java.util.List;
 public class First_Fragment extends Fragment {
 
     ListView listView;
+    private OnFragmentInteractionListener listener;
 
     public First_Fragment() {
         // Required empty public constructor
@@ -53,6 +53,17 @@ public class First_Fragment extends Fragment {
 
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            listener = (OnFragmentInteractionListener) context;
+        } else {
+
+            throw new RuntimeException("Listener is not implemented");
+
+        }
+    }
 
     public class ItemAdapter extends ArrayAdapter {
 
@@ -86,19 +97,10 @@ public class First_Fragment extends Fragment {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (listener != null) {
 
-                    Second_Fragment second_fragment = new Second_Fragment();
-
-                    Bundle bundle = new Bundle();
-                    bundle.putString("imageString", a);
-                    Log.d("imageString", a);
-                    second_fragment.setArguments(bundle);
-
-//                    FragmentManager fm = getFragmentManager();
-//                    FragmentTransaction ft = fm.beginTransaction();
-//                    second_fragment.setArguments(bundle);
-//                    ft.add(R.id.second_layout, second_fragment);
-//                    ft.commit();
+                        listener.sendImage(a);
+                    }
 
 
                 }
@@ -107,17 +109,6 @@ public class First_Fragment extends Fragment {
             return convertView;
         }
 
-
-        @Override
-        public int getCount() {
-            return itemList.size();
-        }
-
-        @Nullable
-        @Override
-        public Object getItem(int position) {
-            return itemList.get(position);
-        }
 
     }
 
@@ -146,5 +137,9 @@ public class First_Fragment extends Fragment {
 
         VolleySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
 
+    }
+
+    public interface OnFragmentInteractionListener {
+        void sendImage(String imageUrl);
     }
 }

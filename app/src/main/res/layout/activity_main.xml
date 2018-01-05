@@ -53,8 +53,20 @@
         android:layout_margin="10dp"
         android:padding="3dp"
         />
-    <TextView
-        android:id="@+id/tv_text"
+    <Button
+        android:id="@+id/see_near"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="See Nearby"
+        android:background="@color/colorAccent"
+        android:textColor="#fff"
+        android:textAllCaps="false"
+        android:textSize="22sp"
+        android:layout_margin="10dp"
+        android:padding="3dp"
+        />
+    <!--<TextView-->
+        <!--android:id="@+id/tv_text"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
 </LinearLayout>

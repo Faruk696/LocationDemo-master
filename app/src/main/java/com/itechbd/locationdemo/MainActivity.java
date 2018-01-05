@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     ImageView iv;
     Button take_photo;
     Button save_photo;
-    TextView tv_test;
+    //TextView tv_test;
 
 
     @Override
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         take_photo = (Button) findViewById(R.id.take_photo);
         save_photo = (Button) findViewById(R.id.save_photo);
 
-        tv_test = (TextView) findViewById(R.id.tv_text);
+        //tv_test = (TextView) findViewById(R.id.tv_text);
 
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECOND);
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     protected void onStop() {
-        if (mGoogleApiClient != null) {
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
             mGoogleApiClient.disconnect();
         }
