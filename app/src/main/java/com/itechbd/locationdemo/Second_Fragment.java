@@ -44,3 +44,4 @@ public class Second_Fragment extends Fragment {
         imageView.setImageBitmap(decodedByte);
     }
 }
+//here i am adding a comment for cking git commit
